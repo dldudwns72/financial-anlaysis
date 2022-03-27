@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/myAssets/MyAssets.js"],"names":["MyAssets"],"mappings":"6KAAA,wBAMeA,UAJE,IACR","file":"static/js/48.f5c889c4.chunk.js","sourcesContent":["import React from 'react'\n\nconst MyAssets = () => {\n  return <div>MyAssets</div>\n}\n\nexport default MyAssets\n"],"sourceRoot":""}
