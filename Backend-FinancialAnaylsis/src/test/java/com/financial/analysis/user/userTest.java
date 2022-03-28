@@ -1,6 +1,6 @@
 package com.financial.analysis.user;
 
-import com.financial.analysis.entitys.Authority;
+
 import com.financial.analysis.entitys.User;
 import com.financial.analysis.model.request.UserRequest;
 import com.financial.analysis.model.response.user.UserResponse;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 
@@ -32,20 +32,19 @@ public class userTest {
     @MockBean
     UserDetailsRepository userRepository;
 
+    UserRequest userRequest = new UserRequest();
+
     @BeforeEach
     void 유저정보_초기세팅() {
+        userRequest.setUserName("yjlee");
+        userRequest.setPassword("1234");
+        userRequest.setEmail("yjlee@naver.com");
+        userRequest.setPhoneNumber("0102020");
     }
 
     @Test
     @Transactional
     public void 사용자_생성() {
-        UserRequest userRequest = new UserRequest();
-
-        userRequest.setUserName("yjlee");
-        userRequest.setPassword("1234");
-        userRequest.setEmail("yjlee@naver.com");
-        userRequest.setPhoneNumber("0102020");
-
         UserResponse response = userService.createUser(userRequest);
         assertThat(response.getUserName()).isEqualTo("yjlee");
     }
@@ -60,7 +59,7 @@ public class userTest {
 
     @Test
     @Transactional(readOnly = true)
-    public void 단일사용자_조회() throws Exception{
+    public void 단일사용자_조회() throws Exception {
         given(userRepository.findById(1L)).willReturn(mockFindUserByID());
         UserResponse response = userService.getUser(1L);
         assertThat(response.getUserName()).isEqualTo("yjlee");
@@ -68,11 +67,10 @@ public class userTest {
 
     @Test
     @Transactional
-    public void 사용자_제거() throws Exception {
-        // 없는 사용자 조회 시 에러 처리 테스트를 하고 싶다..
-//        assertThatThrownBy(() -> userService.deleteUser(122L))
-//                .isInstanceOf(CustomUserException.class);
+    public void 사용자_제거() {
+        assertThrows(CustomUserException.class, () -> userService.deleteUser(22L) );
     }
+
 
     private List<User> mockFindAllUser() {
         List<User> users = new ArrayList<>();
@@ -92,7 +90,7 @@ public class userTest {
         return users;
     }
 
-    private Optional<User> mockFindUserByID(){
+    private Optional<User> mockFindUserByID() {
         User user1 = new User();
         user1.setUsername("yjlee");
         user1.setPassword("1234");
