@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
         ;
 
+        http.httpBasic();
 
         // 로그인 형태를  spring security에서 제공해 주는 폼이 아닌 새로운 form 로그인 형태로 바꾼다
         http.formLogin()

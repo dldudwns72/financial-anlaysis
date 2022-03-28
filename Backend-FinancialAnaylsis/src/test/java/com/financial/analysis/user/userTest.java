@@ -71,7 +71,6 @@ public class userTest {
         assertThrows(CustomUserException.class, () -> userService.deleteUser(22L) );
     }
 
-
     private List<User> mockFindAllUser() {
         List<User> users = new ArrayList<>();
         User user1 = new User();

@@ -31,12 +31,12 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @PutMapping
+    @PutMapping(value = "/user")
     public UserResponse updateUser(@RequestBody UserRequest request) throws Exception{
         return userService.updateUser(request);
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/user/{id}")
     public void deleteUserByID(Long id) throws CustomUserException {
         userService.deleteUser(id);
     }
