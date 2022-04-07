@@ -16,5 +16,5 @@ public interface UserService {
 
     UserResponse updateUser(UserRequest request) throws Exception;
 
-    void deleteUser(Long id) throws CustomUserException;
+    void deleteUser(Long id) throws RuntimeException;
 }

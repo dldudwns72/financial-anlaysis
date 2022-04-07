@@ -1,7 +1,7 @@
 package com.financial.analysis.service.user.impl;
 
-import com.financial.analysis.entitys.Authority;
-import com.financial.analysis.entitys.User;
+import com.financial.analysis.persistence.entity.user.Authority;
+import com.financial.analysis.persistence.entity.user.User;
 import com.financial.analysis.model.request.UserRequest;
 import com.financial.analysis.model.response.user.UserResponse;
 import com.financial.analysis.persistence.repository.UserDetailsRepository;
@@ -96,13 +96,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) throws CustomUserException {
-        Optional<User> user = userRepository.findById(id);
-
-        if(user.isPresent()){
-            throw new CustomUserException("User not found");
+    public void deleteUser(Long id) throws RuntimeException {
+        try {
+            Optional<User> user = userRepository.findById(id);
+            userRepository.deleteById(id);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("fail delete");
         }
-        userRepository.deleteById(id);
     }
 
     private Authority createAuthority(String roleCode, String roleDescription) {

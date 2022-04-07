@@ -1,12 +1,11 @@
 package com.financial.analysis.user;
 
 
-import com.financial.analysis.entitys.User;
+import com.financial.analysis.persistence.entity.user.User;
 import com.financial.analysis.model.request.UserRequest;
 import com.financial.analysis.model.response.user.UserResponse;
 import com.financial.analysis.persistence.repository.UserDetailsRepository;
 import com.financial.analysis.service.user.UserService;
-import com.financial.analysis.service.user.impl.CustomUserException;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -66,9 +65,9 @@ public class userTest {
     }
 
     @Test
-    @Transactional
     public void 사용자_제거() {
-        assertThrows(CustomUserException.class, () -> userService.deleteUser(22L) );
+        // postman으로 돌릴 경우 RuntimeException이랑 message 잘 나오는데 테스트 실패하는 이유가 뭔가..
+        assertThrows(RuntimeException.class, () -> userService.deleteUser(22L));
     }
 
     private List<User> mockFindAllUser() {

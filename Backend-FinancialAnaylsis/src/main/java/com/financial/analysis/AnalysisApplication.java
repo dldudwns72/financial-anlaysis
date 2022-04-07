@@ -1,17 +1,14 @@
 package com.financial.analysis;
 
-import com.financial.analysis.entitys.Authority;
-import com.financial.analysis.entitys.User;
+import com.financial.analysis.persistence.entity.user.Authority;
 import com.financial.analysis.persistence.repository.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication

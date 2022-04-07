@@ -45,6 +45,10 @@ public class BoardEntity {
     @JoinColumn(name = "board_id")
     private List<CommentEntity> comments = new ArrayList<>();
 
+    public void setBoardId(Long boardId){
+        this.boardId = boardId;
+    }
+
     @Builder
     public BoardEntity(String title, String content, String register,List<CommentEntity> comments){
         this.title = title;

@@ -1,4 +1,4 @@
-package com.financial.analysis.entitys;
+package com.financial.analysis.persistence.entity.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

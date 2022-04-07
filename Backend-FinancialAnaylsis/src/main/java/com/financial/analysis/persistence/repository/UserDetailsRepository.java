@@ -1,7 +1,6 @@
 package com.financial.analysis.persistence.repository;
 
-import com.financial.analysis.entitys.User;
-import com.financial.analysis.service.user.impl.CustomUserException;
+import com.financial.analysis.persistence.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

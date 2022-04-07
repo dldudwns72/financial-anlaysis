@@ -1,7 +1,7 @@
 package com.financial.analysis.service.user;
 
 
-import com.financial.analysis.entitys.User;
+import com.financial.analysis.persistence.entity.user.User;
 import com.financial.analysis.persistence.repository.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
