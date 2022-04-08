@@ -1,4 +1,4 @@
-package com.financial.analysis.board;
+package com.financial.analysis.persistence.repository.board;
 
 import com.financial.analysis.persistence.entity.board.BoardEntity;
 import com.financial.analysis.persistence.entity.board.CommentEntity;
@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -56,16 +55,11 @@ public class boardTest {
     @DisplayName("게시판 생성")
     @Transactional
     void createBoard() {
-        commentRepository.save(comment1);
-        commentRepository.save(comment2);
-
         BoardEntity savedEntity = boardRepository.save(boardEntity);
 
         assertThat(savedEntity.getBoardId()).isEqualTo(1L);
+        assertThat(savedEntity.getContent()).isEqualTo("Content1");
         assertThat(savedEntity.getRegister().equals("Register")).isTrue();
-
-        assertThat(savedEntity.getComments().get(0).getComment().equals("comment1")).isTrue();
-        assertThat(savedEntity.getComments().get(1).getComment().equals("comment2")).isTrue();
     }
 
     @Test
@@ -74,13 +68,14 @@ public class boardTest {
     void getBoards() {
         commentRepository.save(comment1);
         commentRepository.save(comment2);
-
+        boardEntity.setCreatedDate(LocalDateTime.now());
         boardRepository.save(boardEntity);
 
         List<BoardEntity> boards = boardRepository.findAll();
 
         assertThat(boards.size()).isEqualTo(1);
     }
+
 
     @Test
     @DisplayName("게시판 단일 조회")
@@ -99,7 +94,22 @@ public class boardTest {
     }
 
     @Test
+    @DisplayName("게시판 수정 및 댓글 추가")
+    @Transactional
+    void updateBoardAndComments(){
+        //Transctional을 해도 Id는 자동으로 늘어난다. 왜일까 -> 생성 되었다가 rollback 되어서 ID 값이 증가 된 후 다시 삭제되서 ID값이 다시 이미 증가된 상태였다.
+        commentRepository.save(comment1);
+        commentRepository.save(comment2);
+        boardRepository.save(boardEntity);
+
+        BoardEntity foundBoard = boardRepository.findByTitle("Title1").get();
+        System.out.println(foundBoard.getTitle());
+
+    }
+
+    @Test
     @DisplayName("게시판 DB 제거")
+    @Transactional(rollbackOn = NoSuchElementException.class)
     void deleteBoard() {
         commentRepository.save(comment1);
         commentRepository.save(comment2);

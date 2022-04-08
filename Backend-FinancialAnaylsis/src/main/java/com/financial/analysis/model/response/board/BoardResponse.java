@@ -17,6 +17,8 @@ public class BoardResponse {
 
     private String title;
 
+    private String content;
+
     private Integer viewCount;
 
     private String register;

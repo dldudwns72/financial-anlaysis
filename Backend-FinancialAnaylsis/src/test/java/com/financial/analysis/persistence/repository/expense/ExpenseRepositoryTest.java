@@ -1,4 +1,4 @@
-package com.financial.analysis.expense.repository;
+package com.financial.analysis.persistence.repository.expense;
 
 
 import com.financial.analysis.AnalysisApplication;

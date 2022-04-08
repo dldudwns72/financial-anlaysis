@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BoardService {
 
-    void createBoard(BoardRequest boardRequest);
+    BoardResponse createBoard(BoardRequest boardRequest);
 
     BoardResponse getBoard(Long boardId);
 

@@ -3,6 +3,7 @@ package com.financial.analysis.persistence.entity.board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "board")
 @Getter
+@Setter
 @NoArgsConstructor
 public class BoardEntity {
 
@@ -44,10 +46,6 @@ public class BoardEntity {
     @OneToMany
     @JoinColumn(name = "board_id")
     private List<CommentEntity> comments = new ArrayList<>();
-
-    public void setBoardId(Long boardId){
-        this.boardId = boardId;
-    }
 
     @Builder
     public BoardEntity(String title, String content, String register,List<CommentEntity> comments){

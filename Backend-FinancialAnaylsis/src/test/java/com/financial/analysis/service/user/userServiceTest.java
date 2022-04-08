@@ -1,11 +1,10 @@
-package com.financial.analysis.user;
+package com.financial.analysis.service.user;
 
 
 import com.financial.analysis.persistence.entity.user.User;
 import com.financial.analysis.model.request.UserRequest;
 import com.financial.analysis.model.response.user.UserResponse;
 import com.financial.analysis.persistence.repository.UserDetailsRepository;
-import com.financial.analysis.service.user.UserService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 
 
 @SpringBootTest
-public class userTest {
+public class userServiceTest {
 
     @Autowired
     UserService userService;

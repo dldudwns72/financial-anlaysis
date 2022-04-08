@@ -1,4 +1,4 @@
-package com.financial.analysis.expense.service;
+package com.financial.analysis.service.expense;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.financial.analysis.controller.ExpenseController;
